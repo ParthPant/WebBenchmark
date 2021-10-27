@@ -21,7 +21,7 @@ private:
     typedef struct
     {
         long count;
-        long total;
+        long long total;
         std::string name;
     } TimerEntry;
 
@@ -90,7 +90,7 @@ public:
     void Profile(std::string const &name, int const count, T func)
     {
         Timer timer(name);
-        for (int i=0; i<300; i++) {
+        for (int i=0; i<count; i++) {
             func();
             timer.Submit();
         }

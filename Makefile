@@ -1,12 +1,13 @@
 CC=g++
-CFLAGS=-g -Wall
+CFLAGS=-Wall
+SRC=src
 APPNAME=myapp
 ENTRYPOINT=main.cpp
 OUT_DIR=bin
 
 all: $(OUT_DIR)/$(APPNAME)
 
-$(OUT_DIR)/$(APPNAME): $(ENTRYPOINT)
+$(OUT_DIR)/$(APPNAME): $(SRC)/$(ENTRYPOINT)
 	mkdir -p $(OUT_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
 
