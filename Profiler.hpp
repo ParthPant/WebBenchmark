@@ -1,54 +1,115 @@
 #include <chrono>
-#include <iostream>
-#include <climits>
+#include <sstream>
 #include <string>
+#include <fstream>
+#include <functional>
+#include <algorithm>
+
+#define PROFILE(name, count, func) {\
+        Profiler::Get().Profile((name), (count), (func));\
+    }
+    
 
 class Profiler {
-};
+private:
+    std::stringstream _outStream;
+    std::string _outputPath = "";
+    int _objCount = 0;
 
-class Timer {
-    using HighResClock = std::chrono::high_resolution_clock;
-
-    typedef struct {
-        long min;
-        long max;
-        float avg;
+    typedef struct
+    {
         long count;
         long total;
-    } EpochResult;
+        std::string name;
+    } TimerEntry;
 
-    std::string _name;
-    EpochResult res = {INT_MAX, INT_MIN, 0, 0, 0};
+    void MakeEntry(TimerEntry res)
+    {
+        //std::cout<<"name: "<<res.name<<"\t"<<"count: "<<(int)res.count<<"\t"<<"duration: "<<(float)res.total/res.count<<"us"<<std::endl;
+        if (_objCount > 0) {
+        _outStream<<",";
+        } else {
+            WriteHeader();
+        }
 
-    std::chrono::system_clock::time_point _start;
+        _outStream<<"\""<<res.name<<"\":";
+        _outStream<<"{";
+        _outStream<<"\""<<"count"<<"\""<<":"<<res.count<<",";
+        _outStream<<"\""<<"avg"<<"\""<<":"<<(float)res.total/res.count;
+        _outStream<<"}";
+        
+        _objCount++;
+    }
+
+    void WriteHeader()
+    {
+        _outStream<<"{";
+    }
+
+    void WriteFooter()
+    {
+        _outStream<<"}";
+        _outStream.flush();
+    }
+
+    class Timer {
+        using HighResClock = std::chrono::high_resolution_clock;
+        TimerEntry _entry = {0};
+        std::chrono::system_clock::time_point _start;
+
+    public:
+        Timer(std::string const &name)
+            :_start(HighResClock::now())
+        {
+            _entry.name = name;
+            std::replace(_entry.name.begin(), _entry.name.end(), ' ', '_');
+        }
+
+        void Submit()
+        {
+            auto end = HighResClock::now();
+            long long stop = std::chrono::time_point_cast<std::chrono::microseconds>(end).time_since_epoch().count();
+            long long start = std::chrono::time_point_cast<std::chrono::microseconds>(_start).time_since_epoch().count();
+
+            _entry.total += (stop - start);
+            _entry.count++;
+
+            _start = HighResClock::now();
+        }
+
+        ~Timer()
+        {
+            Profiler::Get().MakeEntry(_entry);
+        }
+    };
 
 public:
-    Timer(std::string const &name)
-        :_name(name)
-        ,_start(HighResClock::now())
+    template <typename T>
+    void Profile(std::string const &name, int const count, T func)
     {
+        Timer timer(name);
+        for (int i=0; i<300; i++) {
+            func();
+            timer.Submit();
+        }
+    }
+    
+    void SetOutputPath(std::string const &file) {
+        _outputPath = file;
     }
 
-    void submit()
-    {
-        auto end = HighResClock::now();
-        long long stop = std::chrono::time_point_cast<std::chrono::microseconds>(end).time_since_epoch().count();
-        long long start = std::chrono::time_point_cast<std::chrono::microseconds>(_start).time_since_epoch().count();
-
-        long dur = stop - start;
-        res.min = std::min(dur, res.min);
-        res.max = std::max(dur, res.min);
-
-        res.total += (stop - start);
-        res.count++;
-
-        _start = HighResClock::now();
+    ~Profiler() {
+        WriteFooter();
+        if (_outputPath == "")
+            _outputPath = "output.json";
+        std::fstream ofs(_outputPath, std::fstream::out);
+        ofs<<_outStream.str();
+        ofs.close();
     }
 
-    ~Timer()
+    static Profiler& Get()
     {
-        res.avg = (float)res.total/(float)res.count;
-        std::cout<<"name: "<<_name<<"\t"<<"count: "<<(int)res.count<<"\t"<<"duration: "<<res.avg<<"us"<<std::endl;
-        std::cout<<"min: "<<res.min<<"\t"<<"max: "<<res.max<<std::endl;
+        static Profiler _instance;
+        return _instance;
     }
 };
