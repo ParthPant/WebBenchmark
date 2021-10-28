@@ -21,10 +21,10 @@ public:
     {
         PROFILE("fib 10", 10, FUNCTION(fib, 10))
         PROFILE("fib 20", 10, FUNCTION(fib, 20))
-        PROFILE("fact 50", 10, FUNCTION(fact, 50))
+        //PROFILE("fib 50", 10, FUNCTION(fib, 50))
     }
 
-    static App Get()
+    static App& Get()
     {
         static App instance; 
         return instance;

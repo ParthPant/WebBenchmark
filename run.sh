@@ -9,10 +9,16 @@ if make; then
     chmod -R 777 bin/myapp
 
     echo "executing.."
-    bin/myapp -o /out/output.json
+    timeout 5s bin/myapp -o /out/output.json
+    EXIT=$?
 
-    echo "done."
-    exit 1
+    if [ $EXIT -eq 124 ]; then
+        echo "timout."
+    else
+        echo "done."
+    fi
+
+    exit $EXIT 
 else
     echo "error while compiling"
     exit 100
