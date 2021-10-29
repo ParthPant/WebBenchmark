@@ -14,7 +14,7 @@ app.use(express.json())
 
 const port = process.env.PORT || 3000
 
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200)
     res.send("Profiler Entrypoints")
 })

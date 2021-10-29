@@ -23,6 +23,8 @@ int main(int argc, char* argv[]) {
         }
     }
 
+    std::cout.setstate(std::ios_base::failbit);
     App::Get().Run();
+    std::cout.clear();
     return 0;
 }

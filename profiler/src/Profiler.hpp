@@ -106,6 +106,7 @@ public:
             _outputPath = "output.json";
         std::fstream ofs(_outputPath, std::fstream::out);
         ofs<<_outStream.str();
+        std::cout<<_outStream.str();
         ofs.close();
     }
 

@@ -6,10 +6,12 @@ const cleanup = () => {
     fs.copyFileSync(vars.ProfilerDefSourcePath, vars.ProfilerSourcePath)
 }
 
+const NOBODY_UID = process.env.NOBODY_UID || 65534
+
 const executeCode = (code: string) : Promise<number> => {
     return new Promise((resolve, reject) => {
         fs.writeFileSync(vars.ProfilerSourcePath, code)
-        const process = spawn('docker-compose', ['up', '--exit-code-from', 'app'], {cwd: vars.ProfilerPath})
+        const process = spawn('sh', ['run-safe.sh'], {cwd: vars.ProfilerPath, uid: NOBODY_UID as number})
         process.on('exit', exit_code => {
             cleanup()
             resolve(exit_code as number)

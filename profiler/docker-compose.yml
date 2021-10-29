@@ -1,8 +1,0 @@
-services:
-  app:
-    image: "gcc:11.2"
-    working_dir: /app
-    command: sh /code/run.sh
-    volumes:
-     - ./container_data:/out/
-     - ./:/code/

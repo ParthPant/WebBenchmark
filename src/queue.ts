@@ -7,7 +7,10 @@ import { addAppResult, getApp } from './db/apps'
 import { createBullBoard } from 'bull-board'
 import { BullAdapter } from 'bull-board/bullAdapter'
 
-const Queue = new Bull('app-queue', 'redis://127.0.0.1:6379')
+const REDIS_HOST = process.env.REDIS_HOST || '127.0.0.1'
+const REDIS_PORT = process.env.REDIS_PORT || 6379
+
+const Queue = new Bull('app-queue', { redis: { port: REDIS_PORT as number, host: REDIS_HOST } })
 
 const { router, setQueues, replaceQueues, addQueue, removeQueue } = createBullBoard([
     new BullAdapter(Queue, {readOnlyMode : true})
@@ -19,7 +22,12 @@ Queue.process(async (job, done) => {
     try {
         const app = await getApp(app_id)
         const status = await executeCode(app[0].CODE.toString())
-        const profilerOutput = status == 0 ? fs.readFileSync(vars.ProfilerOutputPath).toString() : null
+        let profilerOutput
+        if (status == 0) {
+            profilerOutput = fs.readFileSync(vars.ProfilerOutputPath).toString()
+        } else {
+            profilerOutput = fs.readFileSync(vars.ProfilerLogPath).toString()
+        }
         done(null, {profilerOutput, status})
     } catch (err) {
         throw new Error("error while processing app")

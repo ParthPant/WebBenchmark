@@ -18,7 +18,7 @@ public:
 
     static App Get()
     {
-        static App instance; 
+        static App instance;
         return instance;
     }
 };

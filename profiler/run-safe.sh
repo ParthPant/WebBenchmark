@@ -1,16 +1,19 @@
-rm -rf *
+#!/bin/bash
 
-echo "copying source.."
-cp -r /code/src /app/
-cp /code/Makefile /app/
+rm -rf bin
 
 echo "compiling.."
-if make; then
+make > output/log 2>&1
+
+if [ $? -eq 0 ]; then
     chmod -R 777 bin/myapp
 
     echo "executing.."
-    timeout 5s bin/myapp -o /out/output.json
+    OUTPUT=$(sudo -u nobody timeout 5s bin/myapp -o output/should_not_exist.json)
     EXIT=$?
+
+    echo "transferring output.."
+    echo $OUTPUT > output/output.json
 
     if [ $EXIT -eq 124 ]; then
         echo "timout."
