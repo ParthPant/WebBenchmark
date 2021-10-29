@@ -1,4 +1,4 @@
-rm -r *
+rm -rf *
 
 echo "copying source.."
 cp -r /code/src /app/

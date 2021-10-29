@@ -1,1 +1,5 @@
-bin
+node_modules
+dist
+test.http
+.vscode
+dump.rdb

@@ -10,21 +10,13 @@ class App {
         else return i * fact(i-1);
     }
 
-    int fib(int n) {
-        if (n == 0) return 1;
-        if (n == 1) return 1;
-        return fib(n-1) + fib(n-2);
-    }
-
 public:
     void Run()
     {
-        PROFILE("fib 10", 10, FUNCTION(fib, 10))
-        PROFILE("fib 20", 10, FUNCTION(fib, 20))
-        //PROFILE("fib 50", 10, FUNCTION(fib, 50))
+        PROFILE("factorial", 500, FUNCTION(fact, 50))
     }
 
-    static App& Get()
+    static App Get()
     {
         static App instance; 
         return instance;
