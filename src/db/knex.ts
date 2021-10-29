@@ -1,11 +1,6 @@
 import knex from 'knex';
+import config from './knexfile'
 
-const connectKnex = knex({
-    client: 'sqlite3',
-    connection: {
-        filename: 'db.sqlite3',
-    },
-    useNullAsDefault: true
-})
+const connectKnex = knex(config)
 
 export { connectKnex }

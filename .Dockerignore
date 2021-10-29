@@ -1,0 +1,5 @@
+test.http
+node_modules
+.vscode
+dist
+dump.rdb
