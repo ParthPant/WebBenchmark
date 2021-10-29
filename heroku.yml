@@ -1,4 +1,7 @@
+setup:
+  addons:
+  - plan: heroku-redis:hobby-dev
+    as: redis
 build:
   docker:
     web: Dockerfile.server
-    redis: Dockerfile.redis
