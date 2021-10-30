@@ -37,22 +37,25 @@ export default function Chart(props: {data: Data|null}) {
 
   const chartOptions = {
     maintainAspectRatio: false,
+    // responsive: true,
     plugins: {
       legend: {
           display: false
       },
       title: {
           display: true,
-          text: 'Benchmark'
+          text: 'Benchmark (μs)'
       }
     }
   }
 
   return (
-    <div>
-      <article style={{height: '600px', width: '800px'}}>
+    <div className="flex flex-col w-full">
+      <h1 className="text-2xl font-bold">Results</h1>
+      <article className="mt-4 w-full md:h-[400px]">
         <Bar
           data={chartData}
+          width={'100%'}
           options={chartOptions}
         />
       </article>
