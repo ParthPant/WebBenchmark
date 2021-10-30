@@ -10,9 +10,9 @@ const vars = {
     ProfilerLogPath : path.join(ProfilerPath, 'output', 'log')
 }
 
-const log = () => {
-    console.log(vars)
-}
-// log()
+//const log = () => {
+    //console.log(vars)
+//}
+//log()
 
 export { vars }

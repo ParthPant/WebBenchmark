@@ -4,10 +4,11 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "prestart": "npm run build:knex:migrate:latest",
     "start": "node dist/index.js",
 
     "build": "tsc -p tsconfig.json",
+    "postbuild": "rm -f dist/db/db.sqlite3 && npm run build:knex:migrate:latest",
+
     "dev": "ts-node-dev src/index.ts",
 
     "knex:migrate:make": "knex --knexfile src/db/knexfile.ts migrate:make -x ts",

@@ -8,6 +8,7 @@ export async function up(knex: Knex): Promise<void> {
         "CODE"	TEXT,
         "EXIT_STATUS"	INTEGER,
         "OUTPUT"	TEXT,
+        "LOG" TEXT,
         PRIMARY KEY("ID")
     )`
     return knex.raw(createQuery) 

@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.server
     ports: 
-      - 3000:8080
+      - 8080:8080
     depends_on:
       - "redis"
 

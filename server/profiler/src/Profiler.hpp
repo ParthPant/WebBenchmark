@@ -6,6 +6,7 @@
 #include <fstream>
 #include <functional>
 #include <algorithm>
+#include <iostream>
 
 #define PROFILE(name, count, func) {\
         Profiler::Get().Profile((name), (count), (func));\

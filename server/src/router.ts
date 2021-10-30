@@ -7,7 +7,7 @@ import { addJob } from './queue'
 
 const Router = express.Router()
 
-Router.use(function timeLog (req, res, next) {
+Router.use(function timeLog (_req, _res, next) {
     next()
 })
 
