@@ -7,7 +7,7 @@
     "start": "node dist/index.js",
 
     "build": "tsc -p tsconfig.json",
-    "postbuild": "rm -f dist/db/db.sqlite3 && npm run build:knex:migrate:latest",
+    "postbuild": "rm -f /var/lib/db/db.sqlite3 && npm run build:knex:migrate:latest",
 
     "dev": "ts-node-dev src/index.ts",
 

@@ -4,6 +4,8 @@ RUN apk update
 RUN apk add docker docker-compose
 RUN apk add nodejs npm make gcc g++ sudo
 
+RUN mkdir -p /var/lib/db/
+
 WORKDIR /server
 
 COPY . .

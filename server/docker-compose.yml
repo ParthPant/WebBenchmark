@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile.server
     depends_on:
       - "redis"
+    volumes:
+      - database:/var/lib/db/
     restart: on-failure
 
   redis:
@@ -22,3 +24,6 @@ services:
       - "server"
       - "redis"
     restart: on-failure
+
+volumes:
+  database:
