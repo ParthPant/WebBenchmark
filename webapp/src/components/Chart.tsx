@@ -1,5 +1,6 @@
-import { Bar} from 'react-chartjs-2'
-
+import { useContext } from 'react'
+import { Bar } from 'react-chartjs-2'
+import { ThemeContext } from './ThemeContext'
 interface functionStat {
   avg: number,
   count: number
@@ -15,6 +16,8 @@ export default function Chart(props: {data: Data|null}) {
   let labels = undefined
   let chart_data: number[] = []
 
+  const { theme } = useContext(ThemeContext)
+
   if (data) {
     labels = Object.keys(data)
     Object.values(data).forEach(value => {
@@ -26,7 +29,7 @@ export default function Chart(props: {data: Data|null}) {
     labels: labels,
     datasets: [
       {
-        //label: 'benchmark (lower is better)',
+        // label: 'benchmark (lower is better)',
         backgroundColor: ['magenta', 'cyan', 'green', 'pink'],
         borderColor: ['magenta', 'cyan', 'green', 'pink'],
         borderWidth: 2,
@@ -35,20 +38,37 @@ export default function Chart(props: {data: Data|null}) {
     ]
   }
 
+  const color = theme === 'dark' ? '#d1d1d180' : '#80808080'
+
   const chartOptions = {
     maintainAspectRatio: false,
-    // responsive: true,
-    plugins: {
-      legend: {
-          display: false,
-          color: 'white'
-      },
-      title: {
-          display: true,
-          text: 'Benchmark (μs)',
-          //color: 'white'
-      }
-    }
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
+            display: true ,
+            color
+          },
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: true ,
+            color
+          },
+        },
+      ],
+    },
+    legend: {
+        display: false,
+        color: 'white'
+    },
+    title: {
+        display: true,
+        text: 'Benchmark (μs)',
+        //color: 'white'
+    },
   }
 
   return (
@@ -57,7 +77,6 @@ export default function Chart(props: {data: Data|null}) {
       <article className="mt-4 w-full md:h-[400px]">
         <Bar
           data={chartData}
-          width={'100%'}
           options={chartOptions}
         />
       </article>
