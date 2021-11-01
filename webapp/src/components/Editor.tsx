@@ -1,8 +1,10 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import AceEditor from 'react-ace'
 import "ace-builds/src-noconflict/theme-github"
+import "ace-builds/src-noconflict/theme-dracula"
 import "ace-builds/src-noconflict/mode-c_cpp"
 import Chart, { Data } from './Chart'
+import {ThemeContext} from './ThemeContext'
 
 const makeURL = (endpoint: string) => {
   const base = "http://localhost:8080/"
@@ -43,6 +45,8 @@ export default function Editor() {
   const [status, setStatus] = useState("Idle")
   const [polling, setPolling] = useState(false)
   const [log, setLog] = useState(null)
+
+  const { theme } = useContext(ThemeContext)
  
   let pollInterval: NodeJS.Timeout|null = null
 
@@ -82,28 +86,29 @@ export default function Editor() {
   }, [])
 
   return(
-    <div className="flex flex-nowrap justify-around sm:flex-col md:flex-col lg:flex-row">
+    <div className="flex justify-around flex-nowrap sm:flex-col md:flex-col lg:flex-row">
       <div className="flex-grow">
-        <h1 className="text-2xl font-bold">Code</h1>
+        <h1 className="text-2xl font-bold dark:text-white">Code</h1>
         <div className="mt-5 shadow-md">
           <AceEditor
             value={code}
             width='100%'
-            theme="github"
+            fontSize={15}
+            theme={theme=='dark'?'dracula':'github'}
             mode="c_cpp"
             onChange={(val)=>setCode(val)}
             />
         </div>
 
         <button 
-          className="bg-green-400 p-2 rounded text-lg my-5 hover:bg-green-500 disabled:bg-gray-400 disabled:text-gray-500 shadow-md"
+          className="p-2 my-5 text-lg bg-green-400 rounded shadow-md hover:bg-green-500 disabled:bg-gray-400 disabled:text-gray-500"
           onClick={handleClick}
           disabled={polling}>
             Run Benchmark
         </button>
-        <p className="text-gray-600 text-opacity-90 font-mono">Status: {status}</p>
-        <h2 className="text-gray-600 font-semibold text-lg my-3">Logs:</h2>
-        <div className="bg-gray-700 text-gray-200 font-mono border-2 h-48 w-11/12 p-2 rounded-lg border-none overflow-auto shadow-md whitespace-pre-line">{log || "Nothing to show"}</div>
+        <p className="font-mono text-gray-600 dark:text-gray-200 text-opacity-90">Status: {status}</p>
+        <h2 className="my-3 text-lg font-semibold text-gray-600 dark:text-gray-200">Logs:</h2>
+        <div className="w-11/12 h-48 p-2 overflow-auto font-mono text-gray-600 whitespace-pre-line border-2 border-none rounded-lg shadow-md dark:text-gray-200 bg-yellow-50 dark:bg-gray-700">{log || "Nothing to show"}</div>
       </div>
       
       <div className="md:w-[100%] lg:w-[40%] lg:ml-4 md:mt-4">

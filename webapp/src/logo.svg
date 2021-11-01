@@ -1,1 +1,12 @@
-<svg width="318.757" height="125.631" viewBox="0 0 84.338 33.24" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(.73747 0 0 .73747 -40.1 -89.75)"><rect width="7.706" height="26.911" x="106.189" y="139.861" ry="0" fill="#9f00ff"/><rect width="7.706" height="45.073" x="116.881" y="121.7" ry="0" fill="#00ffac"/><rect width="7.706" height="36.544" x="127.573" y="130.228" ry="0" fill="#00a3ff"/></g><g font-weight="400" font-size="25.498" font-family="Bebas Neue" stroke-width=".637"><text xml:space="preserve" style="line-height:1.25;-inkscape-font-specification:'Bebas Neue'" x="53.33" y="166.517" transform="matrix(.73747 0 0 .73747 -40.1 -89.75)"><tspan style="-inkscape-font-specification:'Bebas Neue'" x="53.33" y="166.517">BENCH</tspan></text><text xml:space="preserve" style="line-height:1.25;-inkscape-font-specification:'Bebas Neue'" x="137.959" y="166.517" transform="matrix(.73747 0 0 .73747 -40.1 -89.75)"><tspan style="-inkscape-font-specification:'Bebas Neue'" x="137.959" y="166.517">ARk</tspan></text></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="318.76" height="125.63" version="1.1" viewBox="0 0 84.338 33.24" xmlns="http://www.w3.org/2000/svg">
+ <g transform="matrix(.73747 0 0 .73747 -40.1 -89.75)">
+  <rect x="106.19" y="139.86" width="7.706" height="26.911" ry="0" fill="#9f00ff"/>
+  <rect x="116.88" y="121.7" width="7.706" height="45.073" ry="0" fill="#00ffac"/>
+  <rect x="127.57" y="130.23" width="7.706" height="36.544" ry="0" fill="#00a3ff"/>
+ </g>
+ <g fill="current" font-family="Bebas Neue" font-size="25.498" font-weight="400" stroke-width=".637">
+  <text transform="matrix(.73747 0 0 .73747 -40.1 -89.75)" x="53.33" y="166.517" style="line-height:1.25" xml:space="preserve"><tspan x="53.33" y="166.517">BENCH</tspan></text>
+  <text transform="matrix(.73747 0 0 .73747 -40.1 -89.75)" x="137.959" y="166.517" style="line-height:1.25" xml:space="preserve"><tspan x="137.959" y="166.517">ARk</tspan></text>
+ </g>
+</svg>

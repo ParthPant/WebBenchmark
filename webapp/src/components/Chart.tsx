@@ -40,18 +40,20 @@ export default function Chart(props: {data: Data|null}) {
     // responsive: true,
     plugins: {
       legend: {
-          display: false
+          display: false,
+          color: 'white'
       },
       title: {
           display: true,
-          text: 'Benchmark (μs)'
+          text: 'Benchmark (μs)',
+          //color: 'white'
       }
     }
   }
 
   return (
     <div className="flex flex-col w-full">
-      <h1 className="text-2xl font-bold">Results</h1>
+      <h1 className="text-2xl font-bold dark:text-white">Results</h1>
       <article className="mt-4 w-full md:h-[400px]">
         <Bar
           data={chartData}
