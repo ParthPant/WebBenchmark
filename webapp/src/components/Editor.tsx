@@ -110,7 +110,7 @@ export default function Editor() {
             theme={theme==='dark'?'dracula':'github'}
             mode="c_cpp"
             onChange={(val)=>setCode(val)}
-            keyboardHandler={vimMode ? "vim" : "windows"}
+            keyboardHandler={vimMode?'vim':undefined}
             />
         </div>
 
