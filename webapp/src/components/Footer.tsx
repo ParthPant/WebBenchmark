@@ -13,7 +13,7 @@ const linkstyle = {textDecoration: "none"}
 
 export default function Footer() {
     const { theme } = useContext(ThemeContext)
-    const color = theme=='dark'?'white':'black'
+    const color = theme==='dark'?'white':'black'
     return (
         <div className="flex items-center w-full px-5 justify-evenly">
             <div className="flex flex-wrap items-center dark:text-white">

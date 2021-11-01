@@ -6,7 +6,7 @@ import "ace-builds/src-noconflict/mode-c_cpp"
 import "ace-builds/src-noconflict/keybinding-vim"
 import Chart, { Data } from './Chart'
 import {ThemeContext} from './ThemeContext'
-import "./toggle.css"
+import "./utility.css"
 
 const makeURL = (endpoint: string) => {
   const base = "http://localhost:8080/"
@@ -89,15 +89,15 @@ export default function Editor() {
   }, [])
 
   return(
-    <div className="flex justify-around flex-nowrap sm:flex-col md:flex-col lg:flex-row">
-      <div className="flex-grow">
-        <div className="flex justify-between items-center">
+    <div className="flex justify-around flex-nowrap sm:flex-col md:flex-col lg:flex-row gap-4">
+      <div className="flex-grow md:mt-4">
+        <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold dark:text-white">Code</h1>
           <div>
-            <span className="text-gray-700 dark:text-gray-200 mr-2">Vim Mode</span>
+            <span className="mr-2 text-gray-700 dark:text-gray-200">Vim Mode</span>
             <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-              <input type="checkbox" name="toggle" id="toggle" checked={vimMode} onChange={()=>setVimMode(!vimMode)} className="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white dark:bg-gray-500 border-4 appearance-none cursor-pointer"/>
-              <label htmlFor="toggle" className="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer"></label>
+              <input type="checkbox" name="toggle" id="toggle" checked={vimMode} onChange={()=>setVimMode(!vimMode)} className="absolute block w-4 h-4 bg-white border-4 rounded-full appearance-none cursor-pointer toggle-checkbox dark:bg-gray-500"/>
+              <label htmlFor="toggle" className="block h-4 overflow-hidden bg-gray-300 rounded-full cursor-pointer toggle-label dark:bg-gray-700"></label>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function Editor() {
             value={code}
             width='100%'
             fontSize={15}
-            theme={theme=='dark'?'dracula':'github'}
+            theme={theme==='dark'?'dracula':'github'}
             mode="c_cpp"
             onChange={(val)=>setCode(val)}
             keyboardHandler={vimMode ? "vim" : "windows"}
@@ -127,6 +127,21 @@ export default function Editor() {
       
       <div className="md:w-[100%] lg:w-[40%] lg:ml-4 md:mt-4">
         <Chart data={benchmark}/>
+        <div className="mt-4">
+          <h1 className="text-2xl font-bold dark:text-white">API Docs</h1>
+          <p className="mt-4 font-mono dark:text-white text-base">
+            You can add member functions to the class App and then run benchmarks on them inside <span className="code">App::Run()</span>.<br/>
+            <br/>
+            Use <span className="code">PROFILE('NAME', COUNT, FUNCTION)</span> to run benchmarks on a function.<br/>
+            Use <span className="code">FUNCTION(func, ...inputs)</span> to supply inputs to a function.<br/>
+            <br/>
+            <span className="code">#include "Profiler.hpp"</span> is necessary to include profiler utilities.<br/>
+            <br/>
+            If your functions take more than 5 seconds to complete execution, they will hit timeout and output return status will be <span className="code">124</span>.<br/>
+            <br/>
+            Do not take user input in your functions and that you cause timeout since the runner does not provide any input to <span className="code">stdin</span>.
+          </p>
+        </div>
       </div>
     </div>
   )

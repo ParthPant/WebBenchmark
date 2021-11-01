@@ -4,7 +4,7 @@ services:
   server:
     build: 
       context: .
-      dockerfile: Dockerfile.server
+      dockerfile: server.Dockerfile
     depends_on:
       - "redis"
     volumes:
