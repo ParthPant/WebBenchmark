@@ -25,13 +25,22 @@ export default function Chart(props: {data: Data|null}) {
     })
   }
 
+  const makeColors = (len: number) => {
+    const base = ['magenta', 'cyan', 'green', 'pink']
+    let res: string[] = []
+    for (let i=0; i<len; i++) {
+      res.push(base[i%base.length])
+    }
+    return res;
+  }
+
   chartData =  {
     labels: labels,
     datasets: [
       {
         // label: 'benchmark (lower is better)',
-        backgroundColor: ['magenta', 'cyan', 'green', 'pink'],
-        borderColor: ['magenta', 'cyan', 'green', 'pink'],
+        backgroundColor: labels && makeColors(labels.length),
+        borderColor: labels && makeColors(labels.length),
         borderWidth: 2,
         data: chart_data
       },

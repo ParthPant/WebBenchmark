@@ -3,8 +3,10 @@ import AceEditor from 'react-ace'
 import "ace-builds/src-noconflict/theme-github"
 import "ace-builds/src-noconflict/theme-dracula"
 import "ace-builds/src-noconflict/mode-c_cpp"
+import "ace-builds/src-noconflict/keybinding-vim"
 import Chart, { Data } from './Chart'
 import {ThemeContext} from './ThemeContext'
+import "./toggle.css"
 
 const makeURL = (endpoint: string) => {
   const base = "http://localhost:8080/"
@@ -45,6 +47,7 @@ export default function Editor() {
   const [status, setStatus] = useState("Idle")
   const [polling, setPolling] = useState(false)
   const [log, setLog] = useState(null)
+  const [vimMode, setVimMode] = useState(false)
 
   const { theme } = useContext(ThemeContext)
  
@@ -88,7 +91,17 @@ export default function Editor() {
   return(
     <div className="flex justify-around flex-nowrap sm:flex-col md:flex-col lg:flex-row">
       <div className="flex-grow">
-        <h1 className="text-2xl font-bold dark:text-white">Code</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold dark:text-white">Code</h1>
+          <div>
+            <span className="text-gray-700 dark:text-gray-200 mr-2">Vim Mode</span>
+            <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+              <input type="checkbox" name="toggle" id="toggle" checked={vimMode} onChange={()=>setVimMode(!vimMode)} className="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white dark:bg-gray-500 border-4 appearance-none cursor-pointer"/>
+              <label htmlFor="toggle" className="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer"></label>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-5 shadow-md">
           <AceEditor
             value={code}
@@ -97,6 +110,7 @@ export default function Editor() {
             theme={theme=='dark'?'dracula':'github'}
             mode="c_cpp"
             onChange={(val)=>setCode(val)}
+            keyboardHandler={vimMode ? "vim" : "windows"}
             />
         </div>
 

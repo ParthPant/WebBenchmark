@@ -31,8 +31,6 @@ private:
         //std::cout<<"name: "<<res.name<<"\t"<<"count: "<<(int)res.count<<"\t"<<"duration: "<<(float)res.total/res.count<<"us"<<std::endl;
         if (_objCount > 0) {
         _outStream<<",";
-        } else {
-            WriteHeader();
         }
 
         _outStream<<"\""<<res.name<<"\":";
@@ -87,6 +85,10 @@ private:
     };
 
 public:
+    Profiler() {
+        WriteHeader();
+    }
+
     template <typename T>
     void Profile(std::string const &name, int const count, T func)
     {
