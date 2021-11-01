@@ -73,7 +73,7 @@ export default function Editor() {
             const benchObj = JSON.parse(res.OUTPUT)
             setBenchmark(benchObj)
           } else {
-            setStatus("Error Code: "+res.EXIT_STATUS)
+            setStatus("Error Code "+res.EXIT_STATUS)
           }
         }
       }, 5000)
@@ -94,10 +94,10 @@ export default function Editor() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold dark:text-white">Code</h1>
           <div>
-            <span className="mr-2 text-gray-700 dark:text-gray-200">Vim Mode</span>
+            <span className="mr-2 text-gray-700 dark:text-gray-300">Vim Mode</span>
             <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-              <input type="checkbox" name="toggle" id="toggle" checked={vimMode} onChange={()=>setVimMode(!vimMode)} className="absolute block w-4 h-4 bg-white border-4 rounded-full appearance-none cursor-pointer toggle-checkbox dark:bg-gray-500"/>
-              <label htmlFor="toggle" className="block h-4 overflow-hidden bg-gray-300 rounded-full cursor-pointer toggle-label dark:bg-gray-700"></label>
+              <input type="checkbox" name="toggle" id="toggle" checked={vimMode} onChange={()=>setVimMode(!vimMode)} className="absolute block w-4 h-4 bg-white border-4 rounded-full shadow appearance-none cursor-pointer toggle-checkbox dark:bg-gray-500"/>
+              <label htmlFor="toggle" className="block h-4 overflow-hidden bg-gray-300 rounded-full shadow cursor-pointer toggle-label dark:bg-gray-700"></label>
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function Editor() {
         <Chart data={benchmark}/>
         <div className="mt-4">
           <h1 className="text-2xl font-bold dark:text-white">API Docs</h1>
-          <p className="mt-4 font-mono dark:text-white text-base">
+          <p className="mt-4 font-mono text-base dark:text-white">
             You can add member functions to the class App and then run benchmarks on them inside <span className="code">App::Run()</span>.<br/>
             <br/>
             Use <span className="code">PROFILE('NAME', COUNT, FUNCTION)</span> to run benchmarks on a function.<br/>
@@ -137,7 +137,7 @@ export default function Editor() {
             <br/>
             <span className="code">#include "Profiler.hpp"</span> is necessary to include profiler utilities.<br/>
             <br/>
-            If your functions take more than 5 seconds to complete execution, they will hit timeout and output return status will be <span className="code">124</span>.<br/>
+            If your functions take more than 5 seconds to complete execution, they will hit timeout and output return status will be <span className="code">143</span>.<br/>
             <br/>
             Do not take user input in your functions and that you cause timeout since the runner does not provide any input to <span className="code">stdin</span>.
           </p>

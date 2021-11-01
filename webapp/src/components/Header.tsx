@@ -1,6 +1,7 @@
 import {useContext} from 'react'
 import  { ReactComponent as Logo }  from '../logo.svg'
 import {ThemeContext} from './ThemeContext'
+import './utility.css'
 
 export default function Header() {
   const { theme, setTheme } = useContext(ThemeContext)
