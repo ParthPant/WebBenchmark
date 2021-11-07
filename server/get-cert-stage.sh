@@ -9,5 +9,5 @@ certbot/certbot \
 certonly --webroot \
 --register-unsafely-without-email --agree-tos \
 --webroot-path=/data/letsencrypt \
-#--staging \
+--staging \
 -d benchmark.parthetic.me 

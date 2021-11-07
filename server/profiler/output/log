@@ -1,4 +1,0 @@
-mkdir -p bin
-g++ -Wall -o bin/myapp src/main.cpp
-make: g++: Command not found
-make: *** [bin/myapp] Error 127
