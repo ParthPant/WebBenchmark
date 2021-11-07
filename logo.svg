@@ -9,6 +9,34 @@
    svg="http://www.w3.org/2000/svg">
   <defs
      id="defs105" />
+  <style>
+    @keyframes r1{
+      0% {height: 2px;}
+      100% {height: 30px;}
+    }
+
+    @keyframes r2{
+      0% {height: 25px;}
+      100% {height: 2px;}
+    }
+
+    @keyframes r3{
+      0% {height: 10px;}
+      100% {height: 30px;}
+    }
+
+    #rect1 {
+      animation: r1 5s infinite alternate;
+    }
+
+    #rect2 {
+      animation: r2 3s infinite alternate;
+    }
+
+    #rect3 {
+      animation: r3 4s infinite alternate;
+    }
+  </style>
   <rect
      x="-43.894886"
      y="-33.238609"
