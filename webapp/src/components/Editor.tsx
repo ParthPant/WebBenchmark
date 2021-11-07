@@ -9,7 +9,7 @@ import {ThemeContext} from './ThemeContext'
 import "./utility.css"
 
 const makeURL = (endpoint: string) => {
-  const base = "http://localhost:8080/"
+  const base = "https://benchmark.parthetic.me/"
   return base+endpoint
 }
 
