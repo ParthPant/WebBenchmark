@@ -20,7 +20,7 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
-      - ./dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+      - /dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
       - /docker-volumes/etc/letsencrypt/live/benchmark.parthetic.me/fullchain.pem:/etc/letsencrypt/live/benchmark.parthetic.me/fullchain.pem
       - /docker-volumes/etc/letsencrypt/live/benchmark.parthetic.me/privkey.pem:/etc/letsencrypt/live/benchmark.parthetic.me/privkey.pem
       - /etc/apache2/.htpasswd:/etc/apache2/.htpasswd
