@@ -2,6 +2,8 @@
 
 rm -rf bin
 
+mkdir -p output
+
 echo "compiling.."
 make > output/log 2>&1
 

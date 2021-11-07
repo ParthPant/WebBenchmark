@@ -1,0 +1,12 @@
+[Unit]
+Description=docker boot
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/ec2-user/Profile/server
+ExecStart=/usr/local/bin/docker-compose -f /home/ec2-user/Profile/server/docker-compose.prod.yml up -d --remove-orphans
+
+[Install]
+WantedBy=multi-user.target

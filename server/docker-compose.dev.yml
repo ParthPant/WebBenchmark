@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  server:
+    build: 
+      context: .
+      dockerfile: server.Dockerfile
+    depends_on:
+      - "redis"
+    volumes:
+      - database:/var/lib/db/
+    restart: on-failure
+
+  redis:
+    image: redis:alpine
+    restart: on-failure
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx-dev.conf:/etc/nginx/nginx.conf
+      - /etc/apache2/.htpasswd:/etc/apache2/.htpasswd
+    ports:
+      - 80:80
+    depends_on:
+      - "server"
+      - "redis"
+    restart: on-failure
+
+volumes:
+  database:

@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 services:
   server:
@@ -18,10 +18,11 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx-ssl.conf:/etc/nginx/nginx.conf
       - /etc/apache2/.htpasswd:/etc/apache2/.htpasswd
+      - ./nginx/html:/usr/share/nginx/html
     ports:
-      - 8080:80
+      - 80:80
     depends_on:
       - "server"
       - "redis"
