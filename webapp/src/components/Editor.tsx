@@ -42,12 +42,14 @@ const pollServer = async (uuid: string) => {
 
 
 export default function Editor() {
-  const [code, setCode] = useState("loading....")
+  const loadMessage = "loading...."
+  const [code, setCode] = useState(loadMessage)
   const [benchmark, setBenchmark] = useState<Data|null>(null)
   const [status, setStatus] = useState("Idle")
   const [polling, setPolling] = useState(false)
   const [log, setLog] = useState(null)
   const [vimMode, setVimMode] = useState(false)
+  const [serverErr, setServerErr] = useState(false)
 
   const { theme } = useContext(ThemeContext)
  
@@ -85,7 +87,12 @@ export default function Editor() {
       .then( json => {
         setCode(json.boilerplate)
       })
-      .catch( _err => {setCode("There has been an error")})
+      .catch( _err => {
+        console.debug("error")
+        setStatus("The Server is down please contact the admin (parthpant4@gmail.com)")
+        setServerErr(true)
+        setCode("There has been an error")
+      })
   }, [])
 
   return(
@@ -117,7 +124,7 @@ export default function Editor() {
         <button 
           className="p-2 my-5 text-lg bg-green-400 rounded shadow-md hover:bg-green-500 disabled:bg-gray-400 disabled:text-gray-500"
           onClick={handleClick}
-          disabled={polling}>
+          disabled={polling || serverErr || code==loadMessage}>
             Run Benchmark
         </button>
         <p className="font-mono text-gray-600 dark:text-gray-200 text-opacity-90">Status: {status}</p>
