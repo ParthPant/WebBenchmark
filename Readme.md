@@ -1,8 +1,13 @@
 ![logo](./logo.png)
 
-[www.parthetic.me/Profile](https://www.parthetic.me/Profile)
-
 A webapp that allows you to run benchmarks on C++ functions.
+
+## Run Dev Server
+```
+git clone https://github.com/ParthPant/Profile.git
+docker-compose up
+```
+Open `localhost:3000` in your browser.
 
 ## API Docs:
 
@@ -31,10 +36,10 @@ You can run benchmarks like:
 ```
  void Run()
 {
-    PROFILE("factorial_10", 500, FUNCTION(fact_rec, 10))
-    PROFILE("factorial_20", 500, FUNCTION(fact_rec, 20))
-    PROFILE("factorial_30", 500, FUNCTION(fact_rec, 30))
-    PROFILE("factorial_40", 500, FUNCTION(fact_rec, 40))
+    PROFILE("factorial_10", 500, FUNCTION(fact_loop, 10))
+    PROFILE("factorial_20", 500, FUNCTION(fact_loop, 20))
+    PROFILE("factorial_30", 500, FUNCTION(fact_loop, 30))
+    PROFILE("factorial_40", 500, FUNCTION(fact_loop, 40))
 }
 ```
 
