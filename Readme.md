@@ -1,4 +1,4 @@
-![logo](./logo.svg)
+![logo](./logo.png)
 
 [www.parthetic.me/Profile](https://www.parthetic.me/Profile)
 

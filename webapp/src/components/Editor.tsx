@@ -91,7 +91,7 @@ export default function Editor() {
         console.debug("error")
         setStatus("The Server is down please contact the admin (parthpant4@gmail.com)")
         setServerErr(true)
-        setCode("There has been an error")
+        setCode("The Server is down please contact the admin (parthpant4@gmail.com)")
       })
   }, [])
 
