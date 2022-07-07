@@ -21,4 +21,4 @@ ENV REDIS_PORT=6379
 ENV NOBODY_UID=65534
 ENV REDIS_HOST='redis'
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

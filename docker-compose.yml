@@ -1,0 +1,41 @@
+# this docker compose file runs the frontend and the backend
+version: "3.3"
+
+services:
+  webapp:
+    build:
+      context: ./webapp
+      dockerfile: ./frontend.Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - "server"
+    networks:
+      - mynetwork
+    restart: on-failure
+
+  server:
+    build: 
+      context: ./server
+      dockerfile: server.Dockerfile
+    ports:
+      - 80:8080
+    depends_on:
+      - "redis"
+    volumes:
+      - database:/var/lib/db/
+    networks:
+      - mynetwork
+    restart: on-failure
+
+  redis:
+    image: redis:alpine
+    networks:
+      - mynetwork
+    restart: on-failure
+
+volumes:
+  database:
+
+networks:
+  mynetwork:
