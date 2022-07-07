@@ -11,7 +11,7 @@ const cleanup = () => {
 const executeCode = (code: string) : Promise<number> => {
     return new Promise((resolve, reject) => {
         fs.writeFileSync(vars.ProfilerSourcePath, code)
-        const process = spawn('sh', ['run-safe.sh'], {cwd: vars.ProfilerPath})
+        const process = spawn('bash', ['run-safe.sh'], {cwd: vars.ProfilerPath})
         process.on('exit', exit_code => {
             cleanup()
             resolve(exit_code as number)

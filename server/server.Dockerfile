@@ -1,8 +1,10 @@
-FROM alpine:3.14
+FROM alpine:latest
 
 RUN apk update
-RUN apk add docker docker-compose
-RUN apk add nodejs npm make gcc g++ sudo
+RUN apk add --no-cache --upgrade bash
+RUN apk add nodejs npm
+RUN apk add bash make gcc g++ sudo
+RUN apk add dos2unix --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
 RUN mkdir -p /var/lib/db/
 
@@ -12,6 +14,7 @@ COPY . .
 
 RUN npm install
 RUN npm run build
+RUN dos2unix profiler/run-safe.sh
 
 ENV PORT=8080
 
