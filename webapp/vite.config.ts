@@ -4,7 +4,7 @@ import svgr from "vite-plugin-svgr"
 
 export default ({ mode }) => {
     return defineConfig({
-        base: '/Profile',
+        base: './',
         build: {
             outDir: 'build',
             target: 'esnext'
