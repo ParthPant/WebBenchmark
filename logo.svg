@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="81.081879"
+   height="125.63094"
+   viewBox="0 0 21.452968 33.239986"
+   version="1.1"
+   id="svg1055"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/parth/dev/profile/webapp/public/favicon.png"
+   inkscape:export-xdpi="150.0672"
+   inkscape:export-ydpi="150.0672"
+   inkscape:version="1.2-dev (0ee976412b, 2021-10-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1059" />
+  <sodipodi:namedview
+     id="namedview1057"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:blackoutopacity="0.0"
+     showgrid="false"
+     inkscape:zoom="4.4202952"
+     inkscape:cx="65.040904"
+     inkscape:cy="62.891727"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1055" />
+  <g
+     transform="matrix(0.73747,0,0,0.73747,-78.311265,-89.750097)"
+     id="g1043">
+    <rect
+       width="7.7059999"
+       height="26.910999"
+       x="106.189"
+       y="139.86099"
+       ry="0"
+       fill="#9f00ff"
+       id="rect1037" />
+    <rect
+       width="7.7059999"
+       height="45.073002"
+       x="116.881"
+       y="121.7"
+       ry="0"
+       fill="#00ffac"
+       id="rect1039" />
+    <rect
+       width="7.7059999"
+       height="36.543999"
+       x="127.573"
+       y="130.228"
+       ry="0"
+       fill="#00a3ff"
+       id="rect1041" />
+  </g>
+</svg>
