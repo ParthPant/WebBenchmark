@@ -1,4 +1,4 @@
-![logo](./logo.png)
+![logo](images/logo.png)
 
 A webapp that allows you to run benchmarks on C++ functions.
 
@@ -44,4 +44,4 @@ You can run benchmarks like:
 ```
 
 This should produce an output like:
-![result](./result.png)
+![result](images/result.png)
